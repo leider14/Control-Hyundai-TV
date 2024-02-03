@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class Button extends StatefulWidget {
   final VoidCallback onPressed;
-  final IconData icono;
-  const Button({super.key,required this.onPressed,required this.icono, });
+  final IconData? icono;
+  final String? text;
+  const Button({super.key,this.text, required this.onPressed, this.icono, });
 
   @override
   State<Button> createState() => _ButtonState();
@@ -23,7 +24,7 @@ class _ButtonState extends State<Button> {
         foregroundColor: ThemeApp.colorFonts,
       ),
       onPressed: (){widget.onPressed();},
-      child:Icon(widget.icono)
+      child:(widget.text!=null) ? Text("${widget.text}") : Icon(widget.icono)
     );
   }
 }

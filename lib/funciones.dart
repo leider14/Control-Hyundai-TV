@@ -1,10 +1,5 @@
 import 'package:ir_sensor_plugin/ir_sensor_plugin.dart';
 import 'package:vibration/vibration.dart';
-/*
-if (await Vibration.hasVibrator()) {
-    Vibration.vibrate();
-}
-*/
 Future<bool> checkIR() async {
   //Consulta si es compatible con IR
   final bool hasIrEmitter = await IrSensorPlugin.hasIrEmitter;

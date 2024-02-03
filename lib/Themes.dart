@@ -25,29 +25,14 @@ class Theme{
 
 List<Theme> temas =[
   Theme(
-    colorButtons: Color.fromARGB(255, 42, 42, 46),
-    colorFonts: Colors.white,
-    colorScaffold: Color.fromARGB(255, 20, 18, 18)
-  ),
-  Theme(
-    colorButtons: Colors.black,
-    colorFonts: Colors.white,
-    colorScaffold: Color.fromARGB(255, 255, 62, 62)
-  ),
-  Theme(
-    colorButtons: Color.fromARGB(255, 40, 108, 255),
-    colorFonts: Color.fromARGB(255, 40, 48, 59),
-    colorScaffold: Color.fromARGB(255, 252, 252, 252)
-  ),
-  Theme(
-    colorButtons: Color.fromARGB(255, 54, 53, 53),
-    colorFonts: Color.fromARGB(255, 255, 0, 221),
-    colorScaffold: Color.fromARGB(255, 0, 0, 0)
-  ),
-  Theme(
     colorButtons: Color.fromARGB(255, 230, 230, 230),
     colorFonts: Color.fromARGB(255, 0, 0, 0),
     colorScaffold: Color.fromARGB(255, 255, 255, 255)
+  ),
+  Theme(
+    colorButtons: Color.fromARGB(255, 42, 42, 46),
+    colorFonts: Colors.white,
+    colorScaffold: Color.fromARGB(255, 20, 18, 18)
   ),
 ]; 
 

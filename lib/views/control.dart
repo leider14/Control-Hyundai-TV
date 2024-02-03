@@ -29,6 +29,20 @@ class _ControlState extends State<Control> {
   }
     @override
   Widget build(BuildContext context) {
+    //Cambios de claro a oscuro, con el color del systema
+    if(MediaQuery.of(context).platformBrightness == Brightness.light){
+      ThemeApp().setColors(
+        clButtons: temas[0].colorButtons,
+        clFonts: temas[0].colorFonts,
+        clBackground: temas[0].colorScaffold
+      );
+    }else{
+      ThemeApp().setColors(
+        clButtons: temas[1].colorButtons,
+        clFonts: temas[1].colorFonts,
+        clBackground: temas[1].colorScaffold
+      );
+    }
     return 
     Scaffold(
       backgroundColor: ThemeApp.colorScaffoldBackground,
@@ -47,19 +61,65 @@ class _ControlState extends State<Control> {
                   ),
                   Text("Hyundai Remote",textScaleFactor: 1.3,style: TextStyle(fontWeight: FontWeight.bold,color: ThemeApp.colorFonts),),
                   Button(
+                    icono: Icons.keyboard_alt_outlined,
                     onPressed: (){
-                      setState(() {
-                        contador >= temas.length-1 ? contador=0 : contador++;
-                        print(contador);
-                        ThemeApp().setColors(
-                          clButtons: temas[contador].colorButtons,
-                          clFonts: temas[contador].colorFonts,
-                          clBackground: temas[contador].colorScaffold
-                        );
-                      });
-                      
+                      showModalBottomSheet(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                          ),
+                        ),
+                        builder: (context) {
+                          return 
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.9,
+                            padding: EdgeInsets.symmetric(vertical: 20),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Button(onPressed: (){sendCode(code: Codes.uno);},text: "1",),
+                                    Button(onPressed: (){sendCode(code: Codes.dos);},text: "2",),
+                                    Button(onPressed: (){sendCode(code: Codes.tres);},text: "3",),
+                                  ],
+                                ),
+                                SizedBox(height: 20,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Button(onPressed: (){sendCode(code: Codes.cuatro);},text: "4",),
+                                    Button(onPressed: (){sendCode(code: Codes.cinco);},text: "5",),
+                                    Button(onPressed: (){sendCode(code: Codes.seis);},text: "6",),
+                                  ],
+                                ),
+                                SizedBox(height: 20,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Button(onPressed: (){sendCode(code: Codes.siete);},text: "7",),
+                                    Button(onPressed: (){sendCode(code: Codes.ocho);},text: "8",),
+                                    Button(onPressed: (){sendCode(code: Codes.nueve);},text: "9",),
+                                  ],
+                                ),
+                                SizedBox(height: 20,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Button(onPressed: (){sendCode(code: Codes.cero);},text: "0",),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
                     }, 
-                    icono: Icons.light_mode_outlined),
+                    
+                  ),
                 ],
               ),
               const SizedBox(height: 20,),
@@ -94,6 +154,7 @@ class _ControlState extends State<Control> {
                         ButtonRectangle(onPressed: (){sendCode(code: Codes.sleep);},child: const Text("Sleep"),),
                         SizedBox(height: 20,),
                         ButtonRectangle(onPressed: (){sendCode(code: Codes.canal);},child: const Text("Canal"),),
+                      
                       ],
                     ),
                   BarButtons(
